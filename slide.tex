@@ -1,7 +1,13 @@
 \documentclass[aspectratio=32]{beamer}
 
+\newcommand{\image}[2]{
+  \begin{center}
+    \includegraphics[height=#1\textheight, keepaspectratio]{#2}
+  \end{center}
+}
 
 \usepackage{FiraSans}
+\usepackage{graphicx}
 
 \newcommand{\tightlist}{%
   \setlength{\itemsep}{0.2em}\setlength{\parskip}{0pt}} % Increase space between items
@@ -44,5 +50,7 @@
 \end{frame}
 
 $body$
+
+% Add more frames with images as necessary
 
 \end{document}
