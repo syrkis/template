@@ -1,0 +1,43 @@
+\documentclass{beamer}
+
+\usepackage{FiraSans}
+
+\newcommand{\tightlist}{%
+  \setlength{\itemsep}{0.2em}\setlength{\parskip}{0pt}} % Increase space between items
+
+\title{$title$}
+\author{$author$}
+\date{$date$}
+
+% Remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+
+% Set color to black and background to white
+\setbeamercolor{structure}{fg=black}
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamercolor{background canvas}{bg=white}
+
+% Use circle for bullet points
+\setbeamertemplate{itemize items}[square]
+
+% Footer Configuration
+\setbeamertemplate{footline}{%
+  \hspace*{0.5cm}
+  \small{$author$}%
+  \hfill%
+  \small{\insertframenumber/\inserttotalframenumber}%
+  \hspace*{0.5cm}
+  \vspace{0.5cm}
+}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+$body$
+
+\end{document}
