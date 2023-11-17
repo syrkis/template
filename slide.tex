@@ -1,20 +1,40 @@
 \documentclass[aspectratio=32]{beamer}
 
+
+\defbeamertemplate*{title page}{customized}[1][]
+{
+  \begin{center}
+    \vfill
+    \usebeamerfont{title}\inserttitle\par
+    \vfill
+    {\small\usebeamerfont{author}\insertauthor\par} % Author in smaller font
+    \vfill
+  \end{center}
+}
+
+
 \newcommand{\image}[2]{
   \begin{center}
     \includegraphics[height=#1\textheight, keepaspectratio]{#2}
   \end{center}
 }
 
+\usepackage{datetime}
+\newdateformat{mydate}{\THEYEAR/\twodigit{\THEMONTH}/\twodigit{\THEDAY}}
+
+
 \usepackage{FiraSans}
 \usepackage{graphicx}
+
+\linespread{2}
+
 
 \newcommand{\tightlist}{%
   \setlength{\itemsep}{0.2em}\setlength{\parskip}{0pt}} % Increase space between items
 
 \title{$title$}
 \author{$author$}
-\date{$date$}
+\date{} % Empty the date here to remove it from the title slide
 
 % Remove navigation symbols
 \setbeamertemplate{navigation symbols}{}
@@ -32,16 +52,27 @@
 % Footer Configuration
 \setbeamertemplate{footline}{%
   \hspace*{0.5cm}
-  \small{$author$}%
+  \small{\mydate\today} % Use today's date in YYYY-MM-DD format
   \hfill%
-  \small{\insertframenumber/\inserttotalframenumber}%
+  \small{%
+    \ifnum\insertframenumber<10
+      0\insertframenumber%
+    \else
+      \insertframenumber%
+    \fi
+    /\inserttotalframenumber%
+  }%
   \hspace*{0.5cm}
   \vspace{0.5cm}
 }
 
+
 % Enable citations
 \usepackage{biblatex}
-\addbibresource{~/Zotero/biblio/library.bib}  % Replace with your .bib file
+\addbibresource{~/text/Zotero/biblio/library.bib}  % Replace with your .bib file
+
+\setbeamertemplate{frametitle continuation}{}
+
 
 \begin{document}
 
@@ -51,6 +82,13 @@
 
 $body$
 
-% Add more frames with images as necessary
+
+\begin{frame}[allowframebreaks]{References}
+    \tiny
+  \printbibliography
+  \setbeamertemplate{frametitle continuation}[from second]
+\end{frame}
+
+\setbeamertemplate{frametitle continuation}{} % Reset for other frames
 
 \end{document}
