@@ -50,13 +50,18 @@
 \setbeamertemplate{itemize items}[square]
 
 % Footer Configuration
+% Footer Configuration
 \setbeamertemplate{footline}{%
   \hspace*{0.5cm}
-  \small{\mydate\today} % Use today's date in YYYY-MM-DD format
+  \tiny{\mydate\today} % Use today's date in YYYY-MM-DD format
   \hfill%
-  \small{%
-    \ifnum\insertframenumber<10
-      0\insertframenumber%
+  \tiny{%
+    \ifnum\inserttotalframenumber>9 % Check if total frames are double digits
+      \ifnum\insertframenumber<10
+        0\insertframenumber% Add leading zero if current frame is single digit
+      \else
+        \insertframenumber%
+      \fi
     \else
       \insertframenumber%
     \fi
@@ -65,6 +70,7 @@
   \hspace*{0.5cm}
   \vspace{0.5cm}
 }
+
 
 
 % Enable citations
