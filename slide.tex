@@ -1,100 +1,86 @@
 \documentclass[aspectratio=32]{beamer}
 
+\usepackage{datetime, graphicx, biblatex}
+\usefonttheme{serif}
 
-\defbeamertemplate*{title page}{customized}[1][]
-{
+\addbibresource{~/text/Zotero/biblio/library.bib}
+\title{$title$}
+\author{$author$}
+\date{\today}
+
+\defbeamertemplate*{title page}{customized}[1][]{
   \begin{center}
     \vfill
     \usebeamerfont{title}\inserttitle\par
     \vfill
-    {\small\usebeamerfont{author}\insertauthor\par} % Author in smaller font
+    {\large\usebeamerfont{author}\insertauthor\par} % Slightly larger font for author
+    \vfill
+    {\large\usebeamerfont{date}\insertdate\par} % Slightly larger font for date
     \vfill
   \end{center}
 }
 
 
-\newcommand{\image}[2]{
-  \begin{center}
-    \includegraphics[height=#1\textheight, keepaspectratio]{#2}
-  \end{center}
+% Change itemize symbols to dashes
+\setbeamertemplate{itemize items}[default]
+\setbeamertemplate{itemize item}{\textemdash}
+\setbeamertemplate{itemize subitem}{\textemdash}
+\setbeamertemplate{itemize subsubitem}{\textemdash}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{frametitle continuation}{}
+\setbeamertemplate{footline}{
+  % Check if the frame number is greater than 1 and less than the total frame number
+  \ifnum\insertframenumber>1
+    \ifnum\insertframenumber<\inserttotalframenumber
+      \vspace{-10ex} % Adjust the vertical space to move the footer up
+      \hfill \insertframenumber/\inserttotalframenumber \hspace*{10ex} % Move to the right
+      \vspace{5ex} % Adjust the vertical space to move the footer up
+    \fi
+  \fi
 }
 
-\usepackage{datetime}
-\newdateformat{mydate}{\THEYEAR/\twodigit{\THEMONTH}/\twodigit{\THEDAY}}
 
-
-\usepackage{FiraSans}
-\usepackage{graphicx}
-
-\linespread{2}
-
-
-\newcommand{\tightlist}{%
-  \setlength{\itemsep}{0.2em}\setlength{\parskip}{0pt}} % Increase space between items
-
-\title{$title$}
-\author{$author$}
-\date{} % Empty the date here to remove it from the title slide
-
-% Remove navigation symbols
-\setbeamertemplate{navigation symbols}{}
-
-
-% Set color to black and background to white
 \setbeamercolor{structure}{fg=black}
 \setbeamercolor{title}{fg=black}
 \setbeamercolor{frametitle}{fg=black}
 \setbeamercolor{background canvas}{bg=white}
 
-% Use circle for bullet points
-\setbeamertemplate{itemize items}[square]
+\newdateformat{mydate}{\THEYEAR/\twodigit{\THEMONTH}/\twodigit{\THEDAY}}
+\linespread{1.15} % Adjusted line spread for better readability
 
-% Footer Configuration
-% Footer Configuration
-\setbeamertemplate{footline}{%
-  \hspace*{0.5cm}
-  \tiny{\mydate\today} % Use today's date in YYYY-MM-DD format
-  \hfill%
-  \tiny{%
-    \ifnum\inserttotalframenumber>9 % Check if total frames are double digits
-      \ifnum\insertframenumber<10
-        0\insertframenumber% Add leading zero if current frame is single digit
-      \else
-        \insertframenumber%
-      \fi
-    \else
-      \insertframenumber%
-    \fi
-    /\inserttotalframenumber%
-  }%
-  \hspace*{0.5cm}
-  \vspace{0.5cm}
-}
+% Adjusting margins
+\setbeamersize{text margin left=10mm,text margin right=10mm}
 
-
-
-% Enable citations
-\usepackage{biblatex}
-\addbibresource{~/text/Zotero/biblio/library.bib}  % Replace with your .bib file
-
-\setbeamertemplate{frametitle continuation}{}
-
+\newcommand{\tightlist}{\setlength{\itemsep}{0.2em}\setlength{\parskip}{0pt}}
+\newcommand{\image}[2]{\begin{center}\includegraphics[height=#1\textheight, keepaspectratio]{#2}\end{center}}
 
 \begin{document}
-
 \begin{frame}
   \titlepage
 \end{frame}
-
 $body$
 
-
 \begin{frame}[allowframebreaks]{References}
-    \tiny
+  \begingroup
+  \setbeamertemplate{footline}{} 
+  \setbeamercolor{background canvas}{bg=white}
+  \linespread{1.2}
+  \scriptsize
   \printbibliography
-  \setbeamertemplate{frametitle continuation}[from second]
+  \endgroup
 \end{frame}
 
-\setbeamertemplate{frametitle continuation}{} % Reset for other frames
+\begin{frame}
+  \begin{center}
+    \vfill
+    \large Noah Syrkis
+    \vfill
+    \large The Virian Project
+    \vfill
+    \large www.virian.org
+    \vfill
+  \end{center}
+\end{frame}
 
 \end{document}
