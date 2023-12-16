@@ -1,64 +1,90 @@
 \documentclass[aspectratio=32]{beamer}
 
-\usepackage{datetime, graphicx, biblatex}
+% Packages
+\usepackage{datetime, graphicx, biblatex, longtable, booktabs, siunitx, listings, caption, etoolbox}
 \usefonttheme{serif}
 
+% Bibliography
 \addbibresource{~/text/Zotero/biblio/library.bib}
+
+% Title Information
 \title{$title$}
-\author{$author$}
-\date{\today}
+\author{Noah Syrkis}
+\date{\mydate{\today}}
 
-\defbeamertemplate*{title page}{customized}[1][]{
-  \begin{center}
-    \vfill
-    \usebeamerfont{title}\inserttitle\par
-    \vfill
-    {\large\usebeamerfont{author}\insertauthor\par} % Slightly larger font for author
-    \vfill
-    {\large\usebeamerfont{date}\insertdate\par} % Slightly larger font for date
-    \vfill
-  \end{center}
-}
+% siunitx Configuration
+\sisetup{group-separator={\,}, group-minimum-digits=4}
 
+% listings Configuration
+\lstset{language=Python, basicstyle=\ttfamily\small, breaklines=true}
 
-% Change itemize symbols to dashes
+% Beamer Templates
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{frametitle continuation}{}
 \setbeamertemplate{itemize items}[default]
 \setbeamertemplate{itemize item}{\textemdash}
 \setbeamertemplate{itemize subitem}{\textemdash}
 \setbeamertemplate{itemize subsubitem}{\textemdash}
 
-\setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{frametitle continuation}{}
-\setbeamertemplate{footline}{
-  % Check if the frame number is greater than 1 and less than the total frame number
-  \ifnum\insertframenumber>1
-    \ifnum\insertframenumber<\inserttotalframenumber
-      \vspace{-10ex} % Adjust the vertical space to move the footer up
-      \hfill \insertframenumber/\inserttotalframenumber \hspace*{10ex} % Move to the right
-      \vspace{5ex} % Adjust the vertical space to move the footer up
-    \fi
-  \fi
+\setbeamertemplate{frametitle}{
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,ht=6ex,dp=1.5ex,leftskip=1cm]{frametitle}
+    \usebeamerfont{frametitle}\insertframetitle\par
+  \end{beamercolorbox}
 }
 
-
+% Beamer Colors
 \setbeamercolor{structure}{fg=black}
 \setbeamercolor{title}{fg=black}
 \setbeamercolor{frametitle}{fg=black}
 \setbeamercolor{background canvas}{bg=white}
 
-\newdateformat{mydate}{\THEYEAR/\twodigit{\THEMONTH}/\twodigit{\THEDAY}}
-\linespread{1.15} % Adjusted line spread for better readability
-
-% Adjusting margins
-\setbeamersize{text margin left=10mm,text margin right=10mm}
+% Custom Commands
+\newcommand{\image}[2][]{
+    \begin{figure}
+    \centering
+    \vfill % This will add space at the top, pushing the figure down
+    \includegraphics[width=\textwidth, height=0.82\textheight, keepaspectratio]{#2}
+    \vfill % This will add space at the bottom, pushing the figure up, thus centering it vertically
+    \captionsetup{font={scriptsize,stretch=0.8}, belowskip=-10pt} % Adjust the 'belowskip' to move the caption up or down as needed
+    \caption{#1}
+    \end{figure}
+}
 
 \newcommand{\tightlist}{\setlength{\itemsep}{0.2em}\setlength{\parskip}{0pt}}
-\newcommand{\image}[2]{\begin{center}\includegraphics[height=#1\textheight, keepaspectratio]{#2}\end{center}}
 
+% Date Format
+\newdateformat{mydate}{\ordinal{DAY} \monthname[\THEMONTH] \THEYEAR}
+
+% Adjustments
+\linespread{1.5} % Line spread for readability
+\setbeamersize{text margin left=10mm,text margin right=10mm} % Margins
+
+% Customized Title Page
+\defbeamertemplate*{title page}{customized}[1][]{
+  \begin{center}
+    \vfill
+    \usebeamerfont{title}\inserttitle\par
+    \vfill
+    \large\usebeamerfont{author}\insertauthor\par
+    \vfill
+    \large\usebeamerfont{date}\insertdate\par
+    \vfill
+  \end{center}
+}
+
+% Document
 \begin{document}
+
 \begin{frame}
   \titlepage
 \end{frame}
+
+\begin{frame}{Outline}
+   \tableofcontents
+\end{frame}
+
 $body$
 
 \begin{frame}[allowframebreaks]{References}
