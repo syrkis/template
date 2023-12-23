@@ -1,0 +1,46 @@
+\documentclass[12pt]{article}
+
+% Set page margins
+\usepackage[margin=1in]{geometry}
+
+% Handle encoding
+\usepackage[utf8]{inputenc}
+
+% For handling headers and footers
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+% Increase line height
+\linespread{1.5}
+
+% Paragraph spacing instead of indentation
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+
+% Custom command for opening with date on the same line
+\newcommand{\opening}[1]{
+  \noindent\begin{minipage}{\linewidth}
+    Dear #1— \hfill
+  \end{minipage}
+  \par\vspace{2ex}
+}
+
+\newcommand{\closing}[1]{\par\vspace{2ex}\textbf{—#1}}
+
+% Setup for fancyhdr
+\fancypagestyle{plain}{%
+  \fancyhf{} % clear all header and footer fields
+  \renewcommand{\headrulewidth}{0pt}
+  % Only add the page number if the document has more than one page
+  \ifnum\value{page}<2\relax\else
+    \cfoot{\thepage\ of \pageref{LastPage}}
+  \fi
+}
+\pagestyle{plain}
+
+\begin{document}
+
+% Pandoc will insert the main content here
+$body$
+
+\end{document}
