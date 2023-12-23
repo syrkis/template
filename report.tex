@@ -1,0 +1,39 @@
+\documentclass[12pt]{article}
+
+% Packages
+\usepackage{datetime, graphicx, biblatex, longtable, booktabs, siunitx, listings, caption, etoolbox}
+\usepackage[margin=1in]{geometry}
+
+% Images
+\setkeys{Gin}{width=\linewidth, keepaspectratio}
+
+% Bibliography
+\addbibresource{/Users/syrkis/text/Zotero/biblio/library.bib}
+
+% Title Information
+\title{$title$}
+\author{Noah Syrkis}
+\date{\today}
+
+% siunitx Configuration
+\sisetup{group-separator={\,}, group-minimum-digits=4}
+
+% listings Configuration
+\lstset{language=Python, basicstyle=\ttfamily\small, breaklines=true}
+
+% Caption Setup
+\captionsetup{font=small, labelfont=bf}
+
+% Document Formatting
+\linespread{1.5} % Adjust line spacing for readability
+
+% Document
+\begin{document}
+
+\maketitle % Creates the title
+
+$body$ % Main content of the report
+
+\printbibliography % Bibliography
+
+\end{document}
