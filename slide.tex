@@ -1,7 +1,7 @@
 \documentclass[aspectratio=32]{beamer}
 
 % Packages
-\usepackage{datetime, graphicx, biblatex, longtable, booktabs, siunitx, listings, caption, etoolbox}
+\usepackage{datetime, graphicx, biblatex, longtable, booktabs, siunitx, listings, caption, etoolbox, hyperref}
 \usefonttheme{serif}
 
 % Bibliography
@@ -18,14 +18,30 @@
 % listings Configuration
 \lstset{language=Python, basicstyle=\ttfamily\small, breaklines=true}
 
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=3ex,dp=7ex]{footlinecolor}%
+    \hspace*{10pt} % Left padding
+    \rule{\dimexpr0.84\paperwidth*\thepage/\inserttotalframenumber\relax}{0.4pt} % Progress bar
+    \hfill % Pushes the page number to the right
+    \raisebox{-1ex}{\insertframenumber/\inserttotalframenumber} % Page number aligned with the line
+    \hspace*{10pt} % Right padding
+  \end{beamercolorbox}%
+  \vskip0pt%
+}
+
+
+
+
 % Beamer Templates
+\setbeamercolor{footline}{fg=black}
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{frametitle continuation}{}
 \setbeamertemplate{itemize items}[default]
-\setbeamertemplate{itemize item}{\textemdash}
-\setbeamertemplate{itemize subitem}{\textemdash}
-\setbeamertemplate{itemize subsubitem}{\textemdash}
+\setbeamertemplate{itemize item}{\textendash}
+\setbeamertemplate{itemize subitem}{\textendash}
+\setbeamertemplate{itemize subsubitem}{\textendash}
 
 \setbeamertemplate{frametitle}{
   \nointerlineskip
@@ -55,7 +71,7 @@
 \newcommand{\tightlist}{\setlength{\itemsep}{0.2em}\setlength{\parskip}{0pt}}
 
 % Date Format
-\newdateformat{mydate}{\ordinal{DAY} \monthname[\THEMONTH] \THEYEAR}
+\newdateformat{mydate}{\monthname[\THEMONTH] \THEDAY, \THEYEAR}
 
 % Adjustments
 \linespread{1.5} % Line spread for readability

@@ -1,0 +1,51 @@
+% Preamble for consistent styling across different document types
+
+% Packages
+\usepackage{datetime} % For date formatting
+\usepackage{graphicx} % For including graphics
+\usepackage{biblatex} % For bibliography management
+\usepackage{longtable} % For multi-page tables
+\usepackage{booktabs} % For professional-quality tables
+\usepackage{siunitx} % For handling numbers and units
+\usepackage{listings} % For source code listings
+\usepackage{caption} % For captions under figures and tables
+\usepackage{etoolbox} % For programming tools
+
+% Font and Theme
+\usefonttheme{serif} % Serif font theme
+
+% Bibliography
+\addbibresource{/Users/syrkis/text/Zotero/biblio/library.bib} % Path to bibliography file
+
+% Author and Date Information
+\author{Noah Syrkis}
+\newdateformat{mydate}{\ordinal{DAY} \monthname[\THEMONTH] \THEYEAR}
+
+% siunitx Configuration
+\sisetup{
+  group-separator={\,},
+  group-minimum-digits=4
+}
+
+% listings Configuration
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  breaklines=true
+}
+
+% Custom Commands
+\newcommand{\image}[2][]{
+    \begin{figure}
+    \centering
+    \vfill
+    \includegraphics[width=\textwidth, height=0.80\textheight, keepaspectratio]{#2}
+    \vfill
+    \captionsetup{font={scriptsize,stretch=0.8}, belowskip=-10pt}
+    \caption{#1}
+    \end{figure}
+}
+\newcommand{\tightlist}{\setlength{\itemsep}{0.2em}\setlength{\parskip}{0pt}}
+
+% General Formatting
+\linespread{1.5} % Line spread for readability
