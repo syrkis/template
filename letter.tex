@@ -7,8 +7,10 @@
 \usepackage[utf8]{inputenc}
 
 % For handling headers and footers
-\usepackage{fancyhdr}
-\usepackage{lastpage}
+\usepackage{fancyhdr, lastpage, biblatex, datetime, graphicx, longtable, booktabs, siunitx, listings, caption, etoolbox}
+
+% Bibliography
+\addbibresource{/Users/syrkis/text/Zotero/biblio/library.bib}
 
 % Increase line height
 \linespread{1.5}
@@ -42,5 +44,7 @@
 
 % Pandoc will insert the main content here
 $body$
+
+\printbibliography % Bibliography
 
 \end{document}
